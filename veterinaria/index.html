@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#000000" />
+    
+    
+    <title> Veterinaria</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/jpg" href="img/ovni.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    
+    <body>
+      <h2 class="titulo_">
+        Administrador de Pacientes de Veterinaria
+      </h2>
+      <main>
+        <div class="container mt-5 p-5">
+          <div class="row mb-4">
+            
+          </div>
+          <div id="contenido" class="row container_">
+            <div class="col-md-6 agregar-cita">
+              <form class="formulario" id="nueva-cita">
+                <legend class="mb-4 datos_p">Datos del Paciente</legend>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-lg-4 col-form-label  formulario__label " for="mascota">Nombre </label>
+                  <div class="col-sm-8 col-lg-8">
+                    <input type="text" id="mascota" name="mascota" class="form-control" placeholder="Nombre Mascota" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-lg-4 col-form-label   formulario__label" for="propietario">Propietario:</label>
+                  <div class="col-sm-8 col-lg-8">
+                    <input type="text" id="propietario" name="propietario" class="form-control"
+                      placeholder="Nombre Dueño de la Mascota" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="telefono">Teléfono:</label>
+                  <div class="col-sm-8 col-lg-8">
+                    <input type="tel" pattern="^[0-9-+\s()]{6,16}" id="telefono" name="telefono" class="form-control"
+                      placeholder="Número de Teléfono" />
+                  </div>
+                </div>
+                <div class="form-group row" id="fecha-container">
+                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="fecha">Fecha:</label>
+                  <div class="col-sm-8 col-lg-8">
+                    <input type="date" id="fecha" name="fecha" class="form-control" />
+                  </div>
+                </div>
+    
+                <div class="form-group row">
+                  <label class="col-sm-4 col-lg-4 col-form-label     formulario__label" for="hora">Hora:</label>
+                  <div class="col-sm-8 col-lg-8">
+                    <input type="time" id="hora" name="hora" class="form-control" min="09:00" max="18:00" />
+                  </div>
+                </div>
+    
+                <div class="form-group row">
+                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="sintomas">Sintomas:</label>
+                  <div class="col-sm-8 col-lg-8">
+                    <textarea id="sintomas" name="sintomas" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success w-100 d-block">
+                    Crear Cita
+                  </button>
+                </div>
+              </form>
+            </div> 
+            <div class="col-md-6 ">
+              <h2 id="administra" class="mb-4 ad_citas">Administra tus Citas</h2>
+              <ul id="citas" class="list-group lista-citas">
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+  
+        <a class="volver" href="/index.html">VOLVER</a>
+      </main>
+
+    <script src="script.js"></script>
+
+    
+   
+  </body> 
+</html>

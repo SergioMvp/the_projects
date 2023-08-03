@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title> Semaforo hecho en casa </title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="semaforo">
+
+            <span id="red" class="luces-circulo" color="red"></span> 
+            <span id="yellow" class="luces-circulo" color="yellow"></span>
+            <span id="green" class="luces-circulo" color="green"></span>
+
+        </div>
+        <div class="poste"></div>
+        <div class="piso"></div>
+
+        <button onclick="cambiarColor()">Cambiar Color</button>
+
+    </div>
+
+</body>
+
+<script>
+    function red() {
+        var lamp = document.getElementById('red');
+        lamp.style.backgroundColor = "red";
+        setTimeout(function () {
+            lamp.style.backgroundColor = "rgb(99, 44, 44)";
+            green();
+        }, 5000);
+    }
+
+    function yellow() {
+        var lamp = document.getElementById('yellow');
+        var amarillo = setInterval(function () {
+            lamp.style.backgroundColor = "yellow";
+            setTimeout(function () {
+                lamp.style.backgroundColor = "rgb(88, 88, 37)";
+            }, 500);
+        }, 1000);
+        setTimeout(function () {
+            lamp.style.backgroundColor = "rgb(88, 88, 37)";
+            clearInterval(amarillo);
+            red();
+        }, 4000);
+    }
+
+    function green() {
+        var lamp = document.getElementById('green');
+        lamp.style.backgroundColor = "rgb(43, 255, 43)";
+        setTimeout(function () {
+            lamp.style.backgroundColor = "rgb(46, 97, 46)";
+            yellow();
+        }, 5000);
+    }
+
+    green();
+
+
+    var semaforoIndex = 0; // Índice para controlar el color del semáforo
+        var semaforoColores = ['red', 'yellow', 'green']; // Colores del semáforo
+
+        function cambiarColor() {
+            // Obtener el elemento del semáforo actual
+            var semaforoActual = document.getElementById(semaforoColores[semaforoIndex]);
+
+            // Restaurar el color original de todos los elementos del semáforo
+            var todosSemaforo = document.getElementsByClassName('luces-circulo');
+            for (var i = 0; i < todosSemaforo.length; i++) {
+                todosSemaforo[i].style.backgroundColor = "rgb(88, 88, 37)";
+            }
+
+            // Cambiar el color del semáforo actual
+            semaforoActual.style.backgroundColor = semaforoColores[semaforoIndex];
+
+            // Incrementar el índice del semáforo
+            semaforoIndex++;
+            if (semaforoIndex >= semaforoColores.length) {
+                semaforoIndex = 0;
+            }
+        }
+</script>
+
+</html>
