@@ -1,94 +1,1052 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="theme-color" content="#000000" />
-    
-    
-    <title> Veterinaria</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/jpg" href="img/ovni.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    </head>
-    
-    <body>
-      <h2 class="titulo_">
-        Administrador de Pacientes de Veterinaria
-      </h2>
-      <main>
-        <div class="container mt-5 p-5">
-          <div class="row mb-4">
-            
-          </div>
-          <div id="contenido" class="row container_">
-            <div class="col-md-6 agregar-cita">
-              <form class="formulario" id="nueva-cita">
-                <legend class="mb-4 datos_p">Datos del Paciente</legend>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-lg-4 col-form-label  formulario__label " for="mascota">Nombre </label>
-                  <div class="col-sm-8 col-lg-8">
-                    <input type="text" id="mascota" name="mascota" class="form-control" placeholder="Nombre Mascota" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-lg-4 col-form-label   formulario__label" for="propietario">Propietario:</label>
-                  <div class="col-sm-8 col-lg-8">
-                    <input type="text" id="propietario" name="propietario" class="form-control"
-                      placeholder="Nombre Dueño de la Mascota" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="telefono">Teléfono:</label>
-                  <div class="col-sm-8 col-lg-8">
-                    <input type="tel" pattern="^[0-9-+\s()]{6,16}" id="telefono" name="telefono" class="form-control"
-                      placeholder="Número de Teléfono" />
-                  </div>
-                </div>
-                <div class="form-group row" id="fecha-container">
-                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="fecha">Fecha:</label>
-                  <div class="col-sm-8 col-lg-8">
-                    <input type="date" id="fecha" name="fecha" class="form-control" />
-                  </div>
-                </div>
-    
-                <div class="form-group row">
-                  <label class="col-sm-4 col-lg-4 col-form-label     formulario__label" for="hora">Hora:</label>
-                  <div class="col-sm-8 col-lg-8">
-                    <input type="time" id="hora" name="hora" class="form-control" min="09:00" max="18:00" />
-                  </div>
-                </div>
-    
-                <div class="form-group row">
-                  <label class="col-sm-4 col-lg-4 col-form-label    formulario__label" for="sintomas">Sintomas:</label>
-                  <div class="col-sm-8 col-lg-8">
-                    <textarea id="sintomas" name="sintomas" class="form-control"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-success w-100 d-block">
-                    Crear Cita
-                  </button>
-                </div>
-              </form>
-            </div> 
-            <div class="col-md-6 ">
-              <h2 id="administra" class="mb-4 ad_citas">Administra tus Citas</h2>
-              <ul id="citas" class="list-group lista-citas">
-                
-              </ul>
-            </div>
-            
-          </div>
-        </div>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria</title>
+    <link rel="icon" href="img/icono.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="/dist/output.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
   
-        <a class="volver" href="/index.html">VOLVER</a>
-      </main>
+    <div class="container-all-all">
+        <div class="container-all">
+            <div class="container" id="container">
+                <h1 class="titulo">Veterinaria</h1>
+                <div class="container-citas">
+                    <button type="button" onclick="crear()" style="margin: 20px 0px;" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" class="btn btn-info">Agendar Cita </button>
 
-    <script src="script.js"></script>
+                    <h2 class="administrar">Administra tus citas</h2>
 
+                </div>
+            </div>
+            <div id="checkboxes" class="checkboxes">
+                <label for=""><input type="checkbox" id="todas" class="checkbox" name="check" value="Todas">Todas</label>
+                <label for=""><input type="checkbox" id="anuladas" class="checkbox" name="check"value="Anulada">Anuladas </label>
+                <label for=""><input type="checkbox" id="abierta" class="checkbox" name="check" value="Activo">Activas</label>
+                <label for=""><input type="checkbox" id="anuladas" class="checkbox" name="check"value="Cerrada">Cerradas </label>
+            </div>
+            <div class="card" id="container-card">
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-3" id="exampleModalLabel">Agenda tu cita</h1>
+                    <button type="button" onclick="limpiar()" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div id="error" class="error"></div>
+                <div class="modal-body">
+                    <div class="espacios">
+                        <label for="mascota">Nombre Mascota:</label><br>
+                        <label for="propietario">Propietario:</label><br>
+                        <label for="telefono">Telefono:</label><br>
+                        <label for="Fecha">Fecha:</label><br>
+                        <label for="hora">Hora:</label><br>
+                        <label for="tipo">Tipo:</label><br>
+                        <label for="sintomas" id="sintomasLabel">Problema:</label><br>
+                    </div>
+                    <div class="descripcion">
+                        <input type="text" id="mascota"><br>
+                        <input type="text" id="propietario"><br>
+                        <input type="number" pattern="[0-9]+" id="telefono"><br>
+                        <input type="date" id="fecha"><br>
+                        <input type="time" id="hora" min="08:00" max="20:00"><br>
+                        <select name="tipo" id="tipo"><br>
+                            <option value="null" disabled selected>Tipo de mascota</option>
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Vaca">Vaca</option>
+                            <option value="Serpiente">Serpiente</option>
+                            <option value="Hamster">Hamster</option>
+                            <option value="Canario">Canario</option>
+                            <option value="Cobaya">Cobaya</option>
+                            <option value="Pez">Pez</option>
+                            <option value="Conejo">Conejo</option>
+                        </select><br>
+                        <textarea id="sintomas" rows="2" cols="30"></textarea>
+                    </div>
+                </div>
+
+                <div id="registrado" class="registrado"></div>
+                <div class="modal-footer">
+                  
+                    <button onclick="limpiar()" type="button" class="submit" data-bs-dismiss="modal">Cerrar</button>
+                    <button onclick="guardar()" type="button" class="submit" id="btn-all">Agendar 💾</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        pintar();
+        let checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                filtrarCitas();
+            });
+        });
+        filtrarCitas();
+    });
+
+    //Pintar cards
+    function pintar() {
+        const containerCard = document.getElementById("container-card");
+        containerCard.innerHTML = "";
+        let fragment = document.createDocumentFragment();
+        data.forEach((d) => {
+
+
+            for (let i = 0; i < animals.length; i++) {
+                if (animals[i].nombre === d.tipo) {
+                    imagen = animals[i].img;
+                    break;
+                }
+            }
+
+            let card = document.createElement("div");
+            card.classList.add("card");
+            // Face Front
+            let faceFront = document.createElement("div");
+            faceFront.classList.add("face", "front");
+            let img = document.createElement("img");
+            img.id = "imagenAnimal"
+            img.src = imagen;
+            img.alt = "";
+            let h3 = document.createElement("h3");
+            // h3.id = "nombreAnimal";
+            h3.textContent = d.mascota;
+            faceFront.appendChild(img);
+            faceFront.appendChild(h3);
+            card.appendChild(faceFront);
+
+            // Face Back
+            let faceBack = document.createElement("div");
+            faceBack.classList.add("face", "back");
+            faceBack.classList.add(getColorClassByEstado(d.estado));
+            let h3Nombre = document.createElement("h3");
+            // h3Nombre.id = "nombreAnimalTwo";
+            h3Nombre.textContent = d.mascota;
+
+            // Div Info
+            let info = document.createElement("div");
+            info.classList.add("info");
+
+            // Propietario
+            let containerPropietario = document.createElement("div");
+            containerPropietario.id = "container-propietario"; // Utilizamos el ID correcto
+            let propietario = document.createElement("p");
+            propietario.classList.add("negrita");
+            propietario.textContent = "Propietario:";
+            let nombrePropietario = document.createElement("p");
+            nombrePropietario.id = "nombrePropietario";
+            nombrePropietario.textContent = d.propietario;
+            containerPropietario.appendChild(propietario);
+            containerPropietario.appendChild(nombrePropietario);
+            info.appendChild(containerPropietario);
+
+            // Numero
+            let containerNumero = document.createElement("div");
+            containerNumero.id = "container-numero"; // Utilizamos el ID correcto
+            let numero = document.createElement("p");
+            numero.classList.add("negrita");
+            numero.textContent = "Telefono:";
+            let numeroSelect = document.createElement("p");
+            numeroSelect.id = "numeroTelefono";
+            numeroSelect.textContent = d.telefono;
+            containerNumero.appendChild(numero);
+            containerNumero.appendChild(numeroSelect);
+            info.appendChild(containerNumero);
+
+            // Fecha
+            let containerFecha = document.createElement("div");
+            containerFecha.id = "container-fecha"; // Utilizamos el ID correcto
+            let fecha = document.createElement("p");
+            fecha.classList.add("negrita");
+            fecha.textContent = "Fecha:";
+            let fechaSelect = document.createElement("p");
+            fechaSelect.id = "fechaSeleccionada";
+            fechaSelect.textContent = d.fecha;
+            containerFecha.appendChild(fecha);
+            containerFecha.appendChild(fechaSelect);
+            info.appendChild(containerFecha);
+
+            // Hora
+            let containerHora = document.createElement("div");
+            containerHora.id = "container-hora"; // Utilizamos el ID correcto
+            let hora = document.createElement("p");
+            hora.classList.add("negrita");
+            hora.textContent = "Hora:";
+            let horaSelect = document.createElement("p");
+            horaSelect.id = "horaSeleccionada";
+            horaSelect.textContent = d.hora;
+            containerHora.appendChild(hora);
+            containerHora.appendChild(horaSelect);
+            info.appendChild(containerHora);
+
+            // Tipo
+
+            let containerTipo = document.createElement("div");
+            containerTipo.id = "container-tipo";
+            let tipo = document.createElement("p");
+            tipo.classList.add("negrita");
+            tipo.textContent = "Tipo:";
+            let tipoSelect = document.createElement("p");
+            tipoSelect.id = "tipoAnimal";
+            tipoSelect.textContent = d.tipo;
+            containerTipo.appendChild(tipo);
+            containerTipo.appendChild(tipoSelect);
+            info.appendChild(containerTipo);
+
+            // Sintomas
+            let containerSintomas = document.createElement("div");
+            containerSintomas.id = "container-sintomas"; // Utilizamos el ID correcto
+            let sintomas = document.createElement("p");
+            sintomas.classList.add("negrita");
+            sintomas.textContent = "Problema:";
+            let sintomasSelect = document.createElement("p");
+            sintomasSelect.id = "sintomasAnimal";
+            sintomasSelect.textContent = d.sintomas;
+            containerSintomas.appendChild(sintomas);
+            containerSintomas.appendChild(sintomasSelect);
+            info.appendChild(containerSintomas);
+
+            // Botones
+            let botones = document.createElement("div");
+            botones.classList.add("link");
+            let btnEditar = document.createElement("button");
+            btnEditar.classList.add("btn", "btn-primary");
+            btnEditar.textContent = "Editar ✍️";
+            btnEditar.setAttribute("data-bs-toggle", "modal")
+            btnEditar.setAttribute("backgroundColor", "blue")
+            btnEditar.setAttribute("data-bs-target", "#exampleModal")
+            btnEditar.addEventListener("click", () => {
+                editar(d)
+            });
+
+            // Select Estado
+            let selectEstado = document.createElement("select");
+            selectEstado.id = "estado";
+            selectEstado.classList.add("estado");
+            selectEstado.dataset.id = d.id;
+            selectEstado.addEventListener("change", function () {
+                const newEstado = this.value;
+                const citaId = this.dataset.id;
+                cambiarEstado(citaId, newEstado);
+            });
+
+            // Opcion Activo
+            opcionActivo = document.createElement("option");
+            opcionActivo.id = "activo";
+            opcionActivo.value = "Activo";
+            opcionActivo.textContent = "Activo";
+            if (d.estado === "Activo") {
+                opcionActivo.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+            // Opcion Anulada
+            opcionAnulada = document.createElement("option");
+            opcionAnulada.id = "anulada";
+            opcionAnulada.value = "Anulada";
+            opcionAnulada.textContent = "Anulada";
+            if (d.estado === "Anulada") {
+                opcionAnulada.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+            // Opcion Cerrada
+            opcionCerrada = document.createElement("option");
+            opcionCerrada.id = "cerrada";
+            opcionCerrada.value = "Cerrada";
+            opcionCerrada.textContent = "Cerrada";
+            if (d.estado === "Cerrada") {
+                opcionCerrada.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+
+            botones.appendChild(btnEditar);
+            selectEstado.appendChild(opcionActivo);
+            selectEstado.appendChild(opcionAnulada);
+            selectEstado.appendChild(opcionCerrada);
+            botones.appendChild(selectEstado)
+            faceBack.appendChild(h3Nombre);
+            faceBack.appendChild(info);
+            faceBack.appendChild(botones);
+            card.appendChild(faceBack);
+            fragment.appendChild(card);
+        });
+
+        containerCard.appendChild(fragment);
+    }
+
+    //Filtrar citas
+    function filtrarCitas() {
+        // Obtener el estado seleccionado en los checkboxes
+        let estadoSeleccionado = null;
+        let checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                estadoSeleccionado = checkbox.value;
+            }
+        });
+
+        // Filtrar las citas según el estado seleccionado
+        let citasFiltradas = [];
+        if (!estadoSeleccionado || estadoSeleccionado === "Todas") { // Si ningún checkbox está seleccionado o si se selecciona "Todas"
+            citasFiltradas = data;
+        } else {
+            citasFiltradas = data.filter((cita) => cita.estado === estadoSeleccionado);
+        }
+
+        // Mostrar las citas filtradas
+        const containerCard = document.getElementById("container-card");
+        containerCard.innerHTML = "";
+
+        let fragment = document.createDocumentFragment();
+        citasFiltradas.forEach((d, i) => {
+            for (let i = 0; i < animals.length; i++) {
+                if (animals[i].nombre === d.tipo) {
+                    imagen = animals[i].img;
+                    break;
+                }
+            }
+
+            let card = document.createElement("div");
+            card.classList.add("card");
+            // Face Front
+            let faceFront = document.createElement("div");
+            faceFront.classList.add("face", "front");
+            let img = document.createElement("img");
+            img.id = "imagenAnimal"
+            img.src = imagen;
+            img.alt = "";
+            let h3 = document.createElement("h3");
+            // h3.id = "nombreAnimal";
+            h3.textContent = d.mascota;
+            faceFront.appendChild(img);
+            faceFront.appendChild(h3);
+            card.appendChild(faceFront);
+
+            // Face Back
+            let faceBack = document.createElement("div");
+            faceBack.classList.add("face", "back");
+            faceBack.classList.add(getColorClassByEstado(d.estado));
+            let h3Nombre = document.createElement("h3");
+            // h3Nombre.id = "nombreAnimalTwo";
+            h3Nombre.textContent = d.mascota;
+
+            // Div Info
+            let info = document.createElement("div");
+            info.classList.add("info");
+
+            // Propietario
+            let containerPropietario = document.createElement("div");
+            containerPropietario.id = "container-propietario"; // Utilizamos el ID correcto
+            let propietario = document.createElement("p");
+            propietario.classList.add("negrita");
+            propietario.textContent = "Propietario:";
+            let nombrePropietario = document.createElement("p");
+            nombrePropietario.id = "nombrePropietario";
+            nombrePropietario.textContent = d.propietario;
+            containerPropietario.appendChild(propietario);
+            containerPropietario.appendChild(nombrePropietario);
+            info.appendChild(containerPropietario);
+
+            // Numero
+            let containerNumero = document.createElement("div");
+            containerNumero.id = "container-numero"; // Utilizamos el ID correcto
+            let numero = document.createElement("p");
+            numero.classList.add("negrita");
+            numero.textContent = "Telefono:";
+            let numeroSelect = document.createElement("p");
+            numeroSelect.id = "numeroTelefono";
+            numeroSelect.textContent = d.telefono;
+            containerNumero.appendChild(numero);
+            containerNumero.appendChild(numeroSelect);
+            info.appendChild(containerNumero);
+
+            // Fecha
+            let containerFecha = document.createElement("div");
+            containerFecha.id = "container-fecha"; // Utilizamos el ID correcto
+            let fecha = document.createElement("p");
+            fecha.classList.add("negrita");
+            fecha.textContent = "Fecha:";
+            let fechaSelect = document.createElement("p");
+            fechaSelect.id = "fechaSeleccionada";
+            fechaSelect.textContent = d.fecha;
+            containerFecha.appendChild(fecha);
+            containerFecha.appendChild(fechaSelect);
+            info.appendChild(containerFecha);
+
+            // Hora
+            let containerHora = document.createElement("div");
+            containerHora.id = "container-hora"; // Utilizamos el ID correcto
+            let hora = document.createElement("p");
+            hora.classList.add("negrita");
+            hora.textContent = "Hora:";
+            let horaSelect = document.createElement("p");
+            horaSelect.id = "horaSeleccionada";
+            horaSelect.textContent = d.hora;
+            containerHora.appendChild(hora);
+            containerHora.appendChild(horaSelect);
+            info.appendChild(containerHora);
+
+            // Tipo
+
+            let containerTipo = document.createElement("div");
+            containerTipo.id = "container-tipo";
+            let tipo = document.createElement("p");
+            tipo.classList.add("negrita");
+            tipo.textContent = "Tipo:";
+            let tipoSelect = document.createElement("p");
+            tipoSelect.id = "tipoAnimal";
+            tipoSelect.textContent = d.tipo;
+            containerTipo.appendChild(tipo);
+            containerTipo.appendChild(tipoSelect);
+            info.appendChild(containerTipo);
+
+            // Sintomas
+            let containerSintomas = document.createElement("div");
+            containerSintomas.id = "container-sintomas"; // Utilizamos el ID correcto
+            let sintomas = document.createElement("p");
+            sintomas.classList.add("negrita");
+            sintomas.textContent = "Problema:";
+            let sintomasSelect = document.createElement("p");
+            sintomasSelect.id = "sintomasAnimal";
+            sintomasSelect.textContent = d.sintomas;
+            containerSintomas.appendChild(sintomas);
+            containerSintomas.appendChild(sintomasSelect);
+            info.appendChild(containerSintomas);
+
+            // Botones
+            let botones = document.createElement("div");
+            botones.classList.add("link");
+            let btnEditar = document.createElement("button");
+            btnEditar.classList.add("btn", "btn-primary");
+            btnEditar.textContent = "Editar ✍️";
+            btnEditar.setAttribute("data-bs-toggle", "modal")
+            btnEditar.setAttribute("backgroundColor", "blue")
+            btnEditar.setAttribute("data-bs-target", "#exampleModal")
+            btnEditar.addEventListener("click", () => {
+                editar(d)
+            });
+            // Select Estado
+            let selectEstado = document.createElement("select");
+            selectEstado.id = "estado";
+            selectEstado.classList.add("estado");
+            selectEstado.dataset.id = d.id;
+            selectEstado.addEventListener("change", function () {
+                const newEstado = this.value;
+                const citaId = this.dataset.id;
+                cambiarEstado(citaId, newEstado);
+            });
+
+            // Opcion Activo
+            opcionActivo = document.createElement("option");
+            opcionActivo.id = "activo";
+            opcionActivo.value = "Activo";
+            opcionActivo.textContent = "Activo";
+            if (d.estado === "Activo") {
+                opcionActivo.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+            // Opcion Anulada
+            opcionAnulada = document.createElement("option");
+            opcionAnulada.id = "anulada";
+            opcionAnulada.value = "Anulada";
+            opcionAnulada.textContent = "Anulada";
+            if (d.estado === "Anulada") {
+                opcionAnulada.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+            // Opcion Cerrada
+            opcionCerrada = document.createElement("option");
+            opcionCerrada.id = "cerrada";
+            opcionCerrada.value = "Cerrada";
+            opcionCerrada.textContent = "Cerrada";
+            if (d.estado === "Cerrada") {
+                opcionCerrada.selected = true; // Establecer como seleccionada si el estado coincide
+            }
+
+
+            botones.appendChild(btnEditar);
+            selectEstado.appendChild(opcionActivo);
+            selectEstado.appendChild(opcionAnulada);
+            selectEstado.appendChild(opcionCerrada);
+            botones.appendChild(selectEstado)
+            faceBack.appendChild(h3Nombre);
+            faceBack.appendChild(info);
+            faceBack.appendChild(botones);
+            card.appendChild(faceBack);
+            fragment.appendChild(card);
+        });
+        containerCard.appendChild(fragment);
+    };
+
+    //Cambiar Estado  en el array
+    function cambiarEstado(citaId, newEstado) {
+        // Buscar la cita correspondiente y actualizar el estado
+        const cita = data.find((c) => c.id === parseInt(citaId));
+        if (cita) {
+            cita.estado = newEstado;
+            pintar(); // Vuelve a pintar las tarjetas para actualizar el estado visualmente
+        }
+    }
+    //Datos
+    let data = [
+    {
+        id: 1,
+        propietario: "Ana",
+        telefono: 5551234567,
+        fecha: "2023-11-05",
+        hora: "10:30",
+        tipo: "Conejo",
+        sintomas: "Ojos llorosos",
+        estado: "Activo"
+    },
+    {
+        id: 2,
+        propietario: "Carlos",
+        telefono: 5559876543,
+        fecha: "2023-11-06",
+        hora: "15:45",
+        tipo: "Iguana",
+        sintomas: "Pérdida de apetito",
+        estado: "Anulada"
+    },
+    {
+        id: 3,
+        propietario: "Laura",
+        telefono: 5557891234,
+        fecha: "2023-11-07",
+        hora: "14:15",
+        tipo: "Hámster",
+        sintomas: "Cojera",
+        estado: "Activo"
+    },
     
-   
-  </body> 
+];
+
+    //Imagenes
+    let animals = [
+        { nombre: "Perro", img: "img/perro.jpg" },
+        { nombre: "Gato", img: "img/gato.jpg" },
+        { nombre: "Vaca", img: "img/vaca.jpg" },
+        { nombre: "Serpiente", img: "img/serpiente.jpg" },
+        { nombre: "Hamster", img: "img/hamster.webp" },
+        { nombre: "Canario", img: "img/canario.jpeg" },
+        { nombre: "Cobaya", img: "img/cobaya.jpg" },
+        { nombre: "Pez", img: "img/pez.jpg" },
+        { nombre: "Conejo", img: "img/conejo.jpg" },
+    ]
+
+    let bd = null
+    let id = null
+
+    //Cambiar color del card segun el estado
+    function getColorClassByEstado(estado) {
+        switch (estado) {
+            case "Activo":
+                return "bg-succeses"; // Verde para citas activas
+            case "Cerrada":
+                return "bg-daxnger"; // Rojo para citas cerradas
+            case "Anulada":
+                return "bg-secosndary"; // Gris para citas suspendidas (o el color que desees)
+            default:
+                return ""; // Si el estado no coincide con los anteriores, no se agrega ninguna clase
+        }
+    }
+
+    //Agregar datos
+    function agregar() {
+        bd = 0
+        if (document.getElementById("btn-all").textContent !== "Agendar 💾") {
+            document.getElementById("btn-all").textContent = "Agendar 💾";
+            if (document.getElementById("btn-all").textContent == "Agendar 💾") {
+                if (bd !== 0) {
+                    bd = 0;
+                }
+            }
+        }
+        
+        console.log(data);
+
+        limpiar();
+    }
+    //Editar datos
+    function editar(r) {
+        // Cambiar el texto del botón a "Guardar cambios" solo si no ha sido cambiado antes
+        if (document.getElementById("btn-all").textContent !== "Guardar cambios 💾") {
+            document.getElementById("btn-all").textContent = "Guardar cambios 💾";
+            
+        }
+        if (document.getElementById("btn-all").textContent == "Guardar cambios 💾") {
+                bd = 1;
+                id = r.id;
+                document.getElementById("mascota").value = r.mascota;
+                document.getElementById("propietario").value = r.propietario;
+                document.getElementById("telefono").value = r.telefono;
+                document.getElementById("fecha").value = r.fecha;
+                document.getElementById("hora").value = r.hora;
+                document.getElementById("tipo").value = r.tipo;
+                document.getElementById("sintomas").value = r.sintomas;
+            }
+
+    }
+    //Guardar datos en data 
+    function guardar() {
+        if (validar() == true) {
+
+            if (bd == 1) {
+                // Actualizar cita existente
+                data.forEach((e) => {
+                    if (e.id == id) {
+                        e.mascota = document.getElementById("mascota").value;
+                        e.propietario = document.getElementById("propietario").value;
+                        e.telefono = document.getElementById("telefono").value;
+                        e.fecha = document.getElementById("fecha").value;
+                        e.hora = document.getElementById("hora").value;
+                        e.tipo = document.getElementById("tipo").value;
+                        e.sintomas = document.getElementById("sintomas").value;
+                        // e.estado = r.estado
+                        document.getElementById("btn-all").textContent = "Agendar";
+                    }
+                    bd = 0
+                    document.getElementById("btn-all").textContent = "Agendar ";
+
+                });
+            } else {
+                // Agregar nueva cita
+                // let estado = document.getElementById("estado").value
+                document.getElementById("btn-all").textContent = "Agendar "
+                data.push({
+                    id: data.length + 1,
+                    mascota: document.getElementById("mascota").value,
+                    propietario: document.getElementById("propietario").value,
+                    telefono: document.getElementById("telefono").value,
+                    fecha: document.getElementById("fecha").value,
+                    hora: document.getElementById("hora").value,
+                    tipo: document.getElementById("tipo").value,
+                    sintomas: document.getElementById("sintomas").value,
+                    estado: "Activo"
+                });
+                console.log(data);
+                
+            }
+            document.getElementById("btn-all").textContent = "Agendar ";
+
+            document.getElementById("container-card").innerHTML = "";
+            pintar();
+            limpiar();
+            cerrarModal();
+        }
+    }
+
+    let error = ""
+    var fechaActual = new Date().toISOString().split('T')[0];
+    var horaInput = document.getElementById("hora").value;
+    var horaServicioInicio = "08:00";
+    var horaServicioFin = "20:00";
+
+    //Validaciones
+    function validar() {
+        if (document.getElementById("mascota").value.trim() === "") {
+            error = "<label for='error'>Por favor escribe el nombre de tu mascota</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("propietario").value.trim() === "") {
+            error = "<label for='error'>Digite el nombre del propietario</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        }
+        else if (document.getElementById("telefono").value.trim() === "") {
+            error = "<label for='error'>Digite el telefono</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("telefono").value.length != 10) {
+            error = "<label for='error'>El telefono tiene que tener 10 digitos</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("fecha").value.trim() === "") {
+            error = "<label for='error'>Por favor establezca una fecha</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("fecha").value <= fechaActual) {
+            error = "<label for='error'>La fecha debe ser mayor a la fecha actual</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("hora").value.trim() === "") {
+            error = "<label for='error'>Establesca una hora</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (validarHora() == false) {
+            error = "<label for='error'>La hora seleccionada está fuera del rango de servicio (8:00 AM - 8:00 PM)</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("tipo").value == "") {
+            error = "<label for='error'>Seleccione el tipo de mascota</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else if (document.getElementById("sintomas").value.trim() === "") {
+            error = "<label for='error'>Por favor indique los sintomas de su mascota</label><br>";
+            document.getElementById("error").innerHTML = error;
+            quitarError();
+        } else {
+            return true
+        }
+    }
+    //Validacion de la hora
+    function validarHora() {
+        var horaInput = document.getElementById("hora").value;
+        var horaServicioInicio = new Date();
+        horaServicioInicio.setHours(8, 0, 0); // Establecer hora de servicio de inicio a las 8:00 AM
+        var horaServicioFin = new Date();
+        horaServicioFin.setHours(20, 0, 0); // Establecer hora de servicio de fin a las 8:00 PM
+
+        var horaSeleccionada = new Date();
+        var partesHora = horaInput.split(":");
+        horaSeleccionada.setHours(parseInt(partesHora[0], 10), parseInt(partesHora[1], 10), 0);
+
+        if (horaSeleccionada < horaServicioInicio || horaSeleccionada > horaServicioFin) {
+            return false
+        }
+    }
+    //Qutar Eroor
+    function quitarError() {
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = "";
+        }, 1500);
+    }
+    //Limpiar inputd
+    function limpiar() {
+        document.getElementById("mascota").value = "";
+        document.getElementById("propietario").value = "";
+        document.getElementById("telefono").value = "";
+        document.getElementById("fecha").value = "";
+        document.getElementById('hora').value = "";
+        document.getElementById("tipo").value = "";
+        document.getElementById("sintomas").value = ""
+    }
+    //Cerrar el modal
+    function cerrarModal() {
+        let modal = document.getElementById("exampleModal");
+        let bsModal = bootstrap.Modal.getInstance(modal);
+        bsModal.hide();
+    }
+
+    var input = document.getElementById("telefono");
+
+    //Validacion para los numeros (solo 0123456789)
+    input.addEventListener("keypress", function (event) {
+        var keyCode = event.keyCode;
+        if (keyCode < 48 || keyCode > 57) {
+            event.preventDefault();
+        }
+    })
+
+    //Seleccionar solo un checkbox
+    let checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                checkboxes.forEach(function (otherCheckbox) {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+</script>
+<style>
+
+    body {
+        margin-top: 0;
+        margin-bottom: 2px;
+
+    }
+
+    .container-all-all {
+        display: flex;
+        /* flex-direction: row; */
+        justify-content: space-between;
+    }
+
+    .container-all {
+        background-color: rgb(242, 241, 240);
+        /* flex-direction: column; */
+        width: 100%;
+        height: 100%;
+    }
+
+    header {
+        position: relative;
+        top: 0;
+        height: 42vh;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: center center;
+    }
+
+
+    .container {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .titulo {
+        margin-top: 10px;
+        font-size: 50px;
+
+    }
+
+    .administrar {
+        font-size: 40px;
+    }
+
+    button {
+        border: 1px solid dodgerblue;
+        background-color: lightblue(225, 229, 235);
+        margin-right: 5px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    label {
+        margin-right: 30px;
+        margin-top: 14px;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: row;
+    }
+
+    input,
+    select,
+    textarea {
+        margin-right: 10px;
+        margin-top: 10px;
+        /* width: 100%; */
+    }
+
+    #otroInput {
+        width: 80%;
+    }
+
+    .modal-content {
+        border: 1px solid #5CBEC6;
+        -webkit-box-shadow: 5px 6px 5px 0px rgba(92, 190, 198, 0.51);
+        -moz-box-shadow: 5px 6px 5px 0px rgba(92, 190, 198, 0.51);
+        box-shadow: 5px 6px 5px 0px rgba(92, 190, 198, 0.51);
+
+    }
+
+    .modal-title {
+        text-align: center;
+        margin-left: 25%;
+    }
+
+
+    .error {
+        color: red;
+        margin-left: 20px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .espacios {
+        font-weight: 500;
+    }
+
+    .gif {
+        position: absolute;
+        right: 80%;
+    }
+
+    .gif img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .checkboxes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .checkboxes label {
+        font-size: 20px;
+        font-family: 'Roboto Serif', serif;
+        height: 30px;
+    }
+
+    .card {
+
+        position: relative;
+        margin: 80px;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 300px;
+        height: 380px;
+        border: 1px solid white;
+        box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(6px);
+        border-radius: 17px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s;
+        display: flex;    
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        font-weight: bolder;
+        color: black;
+}
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+ .card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+ } 
+
+   .container-card {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+  
+    
+
+
+    .card .back .link {
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .card .back .link a {
+        color: #f3f3f3;
+    }
+
+    .card .back h3 {
+        font-size: 30px;
+        margin-top: 5px;
+        letter-spacing: 1px;
+    }
+
+    .card .back p {
+        letter-spacing: 1px;
+    }
+
+    .info div {
+        display: flex;
+        justify-content: space-between;
+        /* justify-content: center; */
+        align-items: center;
+
+    }
+
+    .estado {
+        position: relative;
+        top: 3px;
+        width: 100px;
+        height: 38px;
+        margin: 0;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        font-size: 17px;
+    }
+
+
+    .negrita {
+        font-weight: 700;
+    }
+
+
+    .redes-container a:hover {
+        transform:
+            scale(1.2);
+    }
+
+    @media screen and (min-width : 2000px) {
+        header {
+            height: 30vh;
+        }
+    }
+
+    @media screen and (max-width : 1100px) {
+        header {
+            height: 30vh;
+        }
+    }
+
+    @media screen and (max-width : 850px) {
+        header {
+            height: 25vh;
+        }
+    }
+
+    @media screen and (max-width : 640px) {
+
+        .titulo {
+            font-size: 40px;
+        }
+
+        .administrar {
+            font-size: 30px;
+        }
+
+        .checkboxes label {
+            font-size: 15px;
+        }
+
+        header {
+            height: 20vh;
+        }
+    }
+
+    @media screen and (max-width : 500px) {
+        header {
+            height: 14vh;
+        }
+    }
+</style>
+
 </html>
