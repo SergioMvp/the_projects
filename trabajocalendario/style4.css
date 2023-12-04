@@ -1,0 +1,121 @@
+body{
+    margin:0;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    background-color: rgb(216, 226, 215);
+}
+
+.contenedor-total{
+    padding: 45px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    
+    
+}
+.Meses{
+    background-color: rgb(230, 108, 107);
+    height: 65%;
+    padding-left: 5%;
+    padding-top: 5%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px ;
+    width: 85%;
+}
+.dias{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-top: -34px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 55%;
+    width: 90%;
+}
+#Num{
+        font-size: 80px;
+        color: white;
+        margin: 0;
+    
+    }
+.dias td{
+    color: rgb(230, 108, 107) ;
+    font-weight: bold;
+    padding: 8px;
+    width: 80%;
+    
+}
+
+table{
+    text-align: center;
+}
+
+.v-line{
+    border-left: thick solid #ffffff;
+    height:10%;
+    left: -40%;
+    top: 7%;
+    position: relative;
+    width: 0;
+    border-radius: 50%;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.461);
+   }
+.v-line2{
+    border-left: thick solid #ffffff;
+    height:10%;
+    left: -37%;
+    top: -7.5%;
+    position: relative;
+    width: 0;
+    border-radius: 50%;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.461);
+}
+.v-line3{
+    border-left: thick solid #ffffff;
+    height:10%;
+    left: 30%;
+    top: -23%;
+    position: relative;
+    width: 0;
+    border-radius: 50%;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.461);
+   }
+.v-line4{
+    border-left: thick solid #ffffff;
+    height:10%;
+    left: 33%;
+    top: -37.2%;
+    position: relative;
+    width: 0;
+    border-radius: 50%;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.461);
+   }
+   @media screen and (min-width: 1331px) and (max-width: 1745px) {
+    body{
+        margin:0;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(3, 33.3%);
+        background-color: rgb(216, 226, 215);
+    }
+   }
+
+   @media screen and (min-width: 901px) and (max-width: 1330px) {
+    body{
+        margin:0;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        background-color: rgb(216, 226, 215);
+    }
+   }
+   @media screen and (max-width: 900px) {
+    body{
+        margin:0;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        background-color: rgb(216, 226, 215);
+    }
+   }
+
